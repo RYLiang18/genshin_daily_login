@@ -15,14 +15,19 @@ origin = "https://webstatic-sea.mihoyo.com"
 referer = "https://webstatic-sea.mihoyo.com/"
 
 act_id = os.environ.get("act_id")
-mhy_uuid=os.eviron.get("mhy_uuid")
 
+# cookies
+mhy_uuid = os.environ.get("mhy_uuid")
+ltoken = os.environ.get("ltoken")
+ltuid= os.environ.get("ltuid")
+
+# MAIN
 url = "https://hk4e-api-os.mihoyo.com/event/sol/sign?lang=en-us"
 
 payload = f"{{\"act_id\": \"{act_id}\"}}"
 
 header = {
-    "Cookie": f"_MHYUUID={mhy_uuid}",
+    "Cookie": f"_MHYUUID={mhy_uuid}; mi18nLang=en-us; ltoken={ltoken}; ltuid={ltuid}",
     "User-Agent": user_agent,
     "Origin": origin,
     "Referer": referer
@@ -41,5 +46,6 @@ res = requests.post(
 
 res_json = res.json()
 
-print("Bot Results...")
+print("Bot Results:")
 pp.pprint(res_json)
+print("================ fin ================")
