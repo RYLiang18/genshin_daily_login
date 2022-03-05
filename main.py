@@ -1,4 +1,4 @@
-import requests, json, os, time, random, pprint
+import requests, os, time, random, pprint
 
 pp = pprint.PrettyPrinter(indent = 2)
 
@@ -22,6 +22,14 @@ ltoken = os.environ.get("ltoken")
 ltuid= os.environ.get("ltuid")
 
 # MAIN
+
+# sleep from 1s - 3600s
+# this is to add more confusion to mhy bot detection
+sleep_time = random.randint(1, 3600)
+print(f"SLEEPING FOR {sleep_time} SECONDS...")
+time.sleep(sleep_time)
+
+# bot starts here
 url = "https://hk4e-api-os.mihoyo.com/event/sol/sign?lang=en-us"
 
 payload = f"{{\"act_id\": \"{act_id}\"}}"
@@ -32,10 +40,6 @@ header = {
     "Origin": origin,
     "Referer": referer
 }
-
-
-# wait random time of 1 - 3600 seconds
-
 print("============= bot start =============")
 
 with requests.Session() as res:
