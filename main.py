@@ -38,14 +38,17 @@ header = {
 
 print("============= bot start =============")
 
-res = requests.post(
-    url,
-    data = payload,
-    headers = header
-)
+with requests.Session() as res:
+    res = requests.post(
+        url,
+        data = payload,
+        headers = header
+    )
 
-res_json = res.json()
+    res_json = res.json()
 
-print("Bot Results:")
-pp.pprint(res_json)
+    print("Bot Results:")
+    pp.pprint(res_json)
+
+    
 print("================ fin ================")
